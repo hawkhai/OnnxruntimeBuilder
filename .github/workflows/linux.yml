@@ -50,10 +50,10 @@ jobs:
       # install文件夹改名linux，并使用7z压缩
       - name: 7zip
         run: |
-          mv onnxruntime-${{ env.ONNX_VERSION }}/build/Linux/Release/install linux
+          mv onnxruntime-${{ env.ONNX_VERSION }}/build/Linux/Debug/install linux
           7z a ${{ env.SHARED_PKG_NAME }}.7z linux
           rm -r -f linux
-          mv onnxruntime-${{ env.ONNX_VERSION }}/build/Linux/Release/install-static linux
+          mv onnxruntime-${{ env.ONNX_VERSION }}/build/Linux/Debug/install-static linux
           7z a ${{ env.STATIC_PKG_NAME }}.7z linux
           rm -r -f linux
 

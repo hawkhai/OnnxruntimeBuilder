@@ -45,10 +45,10 @@ jobs:
       # install文件夹改名macos，并使用7z压缩
       - name: 7z
         run: |
-          mv onnxruntime-${{ env.ONNX_VERSION }}/build/MacOS/Release/install macos
+          mv onnxruntime-${{ env.ONNX_VERSION }}/build/MacOS/Debug/install macos
           7z a ${{ env.SHARED_PKG_NAME }}.7z macos
           rm -r -f macos
-          mv onnxruntime-${{ env.ONNX_VERSION }}/build/MacOS/Release/install-static macos
+          mv onnxruntime-${{ env.ONNX_VERSION }}/build/MacOS/Debug/install-static macos
           7z a ${{ env.STATIC_PKG_NAME }}.7z macos
           rm -r -f macos
 

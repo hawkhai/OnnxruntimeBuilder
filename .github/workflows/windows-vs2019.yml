@@ -44,13 +44,13 @@ jobs:
       # install文件夹改名，并使用7z压缩
       - name: 7zip-md
         run: |
-          mv onnxruntime-${{ env.ONNX_VERSION }}/build-x64-md/Release/install windows-x64
-          mv onnxruntime-${{ env.ONNX_VERSION }}/build-x86-md/Release/install windows-x86
+          mv onnxruntime-${{ env.ONNX_VERSION }}/build-x64-md/Debug/install windows-x64
+          mv onnxruntime-${{ env.ONNX_VERSION }}/build-x86-md/Debug/install windows-x86
           7z a ${{ env.SHARED_PKG_NAME }}-md.7z windows-x64 windows-x86
           rm -r -Force windows-x64
           rm -r -Force windows-x86
-          mv onnxruntime-${{ env.ONNX_VERSION }}/build-x64-md/Release/install-static windows-x64
-          mv onnxruntime-${{ env.ONNX_VERSION }}/build-x86-md/Release/install-static windows-x86
+          mv onnxruntime-${{ env.ONNX_VERSION }}/build-x64-md/Debug/install-static windows-x64
+          mv onnxruntime-${{ env.ONNX_VERSION }}/build-x86-md/Debug/install-static windows-x86
           7z a ${{ env.STATIC_PKG_NAME }}-md.7z windows-x64 windows-x86
           rm -r -Force windows-x64
           rm -r -Force windows-x86
@@ -72,13 +72,13 @@ jobs:
       # install文件夹改名，并使用7z压缩
       - name: 7zip-mt
         run: |
-          mv onnxruntime-${{ env.ONNX_VERSION }}/build-x64-mt/Release/install windows-x64
-          mv onnxruntime-${{ env.ONNX_VERSION }}/build-x86-mt/Release/install windows-x86
+          mv onnxruntime-${{ env.ONNX_VERSION }}/build-x64-mt/Debug/install windows-x64
+          mv onnxruntime-${{ env.ONNX_VERSION }}/build-x86-mt/Debug/install windows-x86
           7z a ${{ env.SHARED_PKG_NAME }}-mt.7z windows-x64 windows-x86
           rm -r -Force windows-x64
           rm -r -Force windows-x86
-          mv onnxruntime-${{ env.ONNX_VERSION }}/build-x64-mt/Release/install-static windows-x64
-          mv onnxruntime-${{ env.ONNX_VERSION }}/build-x86-mt/Release/install-static windows-x86
+          mv onnxruntime-${{ env.ONNX_VERSION }}/build-x64-mt/Debug/install-static windows-x64
+          mv onnxruntime-${{ env.ONNX_VERSION }}/build-x86-mt/Debug/install-static windows-x86
           7z a ${{ env.STATIC_PKG_NAME }}-mt.7z windows-x64 windows-x86
           rm -r -Force windows-x64
           rm -r -Force windows-x86

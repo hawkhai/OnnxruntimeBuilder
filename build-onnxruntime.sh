@@ -4,7 +4,7 @@
 
 function collectLibs() {
   # shared lib
-  cmake --build . --config Release --target install
+  cmake --build . --config Debug --target install
   rm -r -f install/bin
   echo "set(OnnxRuntime_INCLUDE_DIRS \"\${CMAKE_CURRENT_LIST_DIR}/include\")" > install/OnnxRuntimeConfig.cmake
   echo "include_directories(\${OnnxRuntime_INCLUDE_DIRS})" >> install/OnnxRuntimeConfig.cmake
@@ -38,7 +38,7 @@ function cmakeParamsMac() {
     $(cat ./onnxruntime_cmake_options.txt) \
     --cmake_extra_defines CMAKE_INSTALL_PREFIX=./install onnxruntime_BUILD_UNIT_TESTS=OFF
 
-  pushd build/MacOS/Release
+  pushd build/MacOS/Debug
   collectLibs
   popd
 }
@@ -48,7 +48,7 @@ function cmakeParamsLinux() {
     $(cat ./onnxruntime_cmake_options.txt) \
     --cmake_extra_defines CMAKE_INSTALL_PREFIX=./install onnxruntime_BUILD_UNIT_TESTS=OFF
 
-  pushd build/Linux/Release
+  pushd build/Linux/Debug
   collectLibs
   popd
 }
@@ -59,11 +59,11 @@ NUM_THREADS=1
 if [ $sysOS == "Darwin" ]; then
   #echo "I'm MacOS"
   NUM_THREADS=$(sysctl -n hw.ncpu)
-  cmakeParamsMac "Release"
+  cmakeParamsMac "Debug"
 elif [ $sysOS == "Linux" ]; then
   #echo "I'm Linux"
   NUM_THREADS=$(grep ^processor /proc/cpuinfo | wc -l)
-  cmakeParamsLinux "Release"
+  cmakeParamsLinux "Debug"
 else
   echo "Other OS: $sysOS"
 fi

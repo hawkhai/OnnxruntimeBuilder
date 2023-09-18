@@ -17,15 +17,15 @@ call set "libs=%%libs%% %~n1"
 GOTO:EOF
 
 :getLibsList
-set "InFile=onnxruntime.dir\Release\onnxruntime.tlog\link.read.1.tlog"
+set "InFile=onnxruntime.dir\Debug\onnxruntime.tlog\link.read.1.tlog"
 set "OutFile=libs_list.txt"
-set "LikeLine=RELEASE\*.LIB"
+set "LikeLine=DEBUG\*.LIB"
 powershell -Command "$data = foreach($line in gc %InFile%){ $line.split(" ")} $data | Out-File %OutFile%"
 powershell -Command "$data = foreach($line in gc %OutFile%){ if($line -like '*%LikeLine%*') {$line}} $data | Out-File -Encoding ascii %OutFile%"
 GOTO:EOF
 
 :collectLibs
-cmake --build . --config Release --target install
+cmake --build . --config Debug --target install
 del /s/q install\*test*.exe
 echo set(OnnxRuntime_INCLUDE_DIRS "${CMAKE_CURRENT_LIST_DIR}/include") > install/OnnxRuntimeConfig.cmake
 echo include_directories(${OnnxRuntime_INCLUDE_DIRS}) >> install/OnnxRuntimeConfig.cmake
@@ -63,9 +63,9 @@ else (
 )
 call build.bat --cmake_generator "%~1" --build_dir "build-%~2-%~3" %MACHINE_FLAG% --update ^
 	--cmake_extra_defines CMAKE_INSTALL_PREFIX=./install onnxruntime_BUILD_UNIT_TESTS=OFF ^
-    --config Release ^
+    --config Debug ^
     %OPTIONS% %STATIC_CRT_FLAG%
-pushd "build-%~2-%~3"\Release
+pushd "build-%~2-%~3"\Debug
 call :collectLibs
 popd
 GOTO:EOF

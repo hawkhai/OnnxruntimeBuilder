@@ -40,10 +40,10 @@ jobs:
       - name: 7zip
         run: |
           mkdir onnxruntime-shared
-          mv onnxruntime-${{ env.ONNX_VERSION }}/Release_armeabi-v7a_19/Release/install onnxruntime-shared/armeabi-v7a
-          mv onnxruntime-${{ env.ONNX_VERSION }}/Release_arm64-v8a_21/Release/install onnxruntime-shared/arm64-v8a
-          mv onnxruntime-${{ env.ONNX_VERSION }}/Release_x86_19/Release/install onnxruntime-shared/x86
-          mv onnxruntime-${{ env.ONNX_VERSION }}/Release_x86_64_21/Release/install onnxruntime-shared/x86_64
+          mv onnxruntime-${{ env.ONNX_VERSION }}/Debug_armeabi-v7a_19/Debug/install onnxruntime-shared/armeabi-v7a
+          mv onnxruntime-${{ env.ONNX_VERSION }}/Debug_arm64-v8a_21/Debug/install onnxruntime-shared/arm64-v8a
+          mv onnxruntime-${{ env.ONNX_VERSION }}/Debug_x86_19/Debug/install onnxruntime-shared/x86
+          mv onnxruntime-${{ env.ONNX_VERSION }}/Debug_x86_64_21/Debug/install onnxruntime-shared/x86_64
           mv onnxruntime-${{ env.ONNX_VERSION }}/OnnxRuntimeWrapper.cmake onnxruntime-shared/OnnxRuntimeWrapper.cmake
           7z a ${{ env.SHARED_PKG_NAME }}.7z onnxruntime-shared
 

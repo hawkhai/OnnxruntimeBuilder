@@ -4,7 +4,7 @@
 
 function collectLibs() {
   # shared lib
-  cmake --build . --config Release --target install
+  cmake --build . --config Debug --target install
   rm -r -f install/bin
   echo "set(OnnxRuntime_INCLUDE_DIRS \"\${CMAKE_CURRENT_LIST_DIR}/include\")" >install/OnnxRuntimeConfig.cmake
   echo "include_directories(\${OnnxRuntime_INCLUDE_DIRS})" >>install/OnnxRuntimeConfig.cmake
@@ -23,15 +23,15 @@ function cmakeParamsAndroid() {
     --android_abi $2 \
     --android_api $3
 
-  pushd "$1_$2_$3"/Release
+  pushd "$1_$2_$3"/Debug
   collectLibs
   popd
 }
 
-cmakeParamsAndroid "Release" "armeabi-v7a" 19
-cmakeParamsAndroid "Release" "arm64-v8a" 21
-cmakeParamsAndroid "Release" "x86" 19
-cmakeParamsAndroid "Release" "x86_64" 21
+cmakeParamsAndroid "Debug" "armeabi-v7a" 19
+cmakeParamsAndroid "Debug" "arm64-v8a" 21
+cmakeParamsAndroid "Debug" "x86" 19
+cmakeParamsAndroid "Debug" "x86_64" 21
 
 echo "message(\"OnnxRuntime Path: \${CMAKE_CURRENT_LIST_DIR}/\${ANDROID_ABI}\")" > OnnxRuntimeWrapper.cmake
 echo "set(OnnxRuntime_DIR \"\${CMAKE_CURRENT_LIST_DIR}/\${ANDROID_ABI}\")" >> OnnxRuntimeWrapper.cmake
